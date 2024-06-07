@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devai.Devai_Chat_Management.model.Message;
 import com.devai.Devai_Chat_Management.services.MessageService.MessageService;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/message/")
 public class MessageController {

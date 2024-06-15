@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devai.Devai_Chat_Management.model.Chat;
+import com.devai.Devai_Chat_Management.model.Message;
 import com.devai.Devai_Chat_Management.model.User;
 import com.devai.Devai_Chat_Management.model.UserChat.CKUserChat;
 import com.devai.Devai_Chat_Management.model.UserChat.UserChat;
@@ -78,6 +79,11 @@ public class ChatServiceImpl implements ChatService{
         CKUserChat ckUser2 = new CKUserChat(idUser2, idChat);
         databaseRepository.getUserChatRepository().deleteById(ckUser1);
         databaseRepository.getUserChatRepository().deleteById(ckUser2);
+        // TODO: Optimizar este método de borrado de mensajes
+        List<Message> messages = databaseRepository.getMessageRepository().findByChatId(idChat);
+        messages.forEach(m -> {
+            databaseRepository.getMessageRepository().delete(m);
+        });
         databaseRepository.getChatRepository().deleteById(idChat);
     }
 }

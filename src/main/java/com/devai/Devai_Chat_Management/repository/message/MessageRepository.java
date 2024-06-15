@@ -13,4 +13,6 @@ public interface MessageRepository extends JpaRepository<Message, Long>{
     List<Message> findByUserId(Long idUser);
     // Obtiene todos los mensajes de un chat
     List<Message> findByChatId(Long idChat);
+    // Elimina todos los mensajes que pertenecian a un chat
+    void deleteByChatId(Long idChat);
 }

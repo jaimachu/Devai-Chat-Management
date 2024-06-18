@@ -26,7 +26,7 @@ public class ChatServiceImpl implements ChatService{
         List<UserChat> allUserChats = databaseRepository.getUserChatRepository().findAll();
         HashSet<Chat> chats = new HashSet<>();
         for (UserChat userChat : allUserChats){
-            if (userChat.getId().getUserId() == idUser)
+            if (idUser.equals(userChat.getId().getUserId()))
                 chats.add(new Chat(userChat.getId().getChatId()));
         }
         return new ArrayList<>(chats);
@@ -52,7 +52,7 @@ public class ChatServiceImpl implements ChatService{
     public User getUserByChat(Long idChat, Long idUser){
         List<UserChat> allUserChats = databaseRepository.getUserChatRepository().findAll();
         for (UserChat userChat : allUserChats){
-            if (userChat.getId().getChatId() == idChat && userChat.getId().getUserId() != idUser){
+            if (userChat.getId().getChatId() == idChat && !userChat.getId().getUserId().equals(idUser)){
                 User user = databaseRepository.getUserRepository().findById(userChat.getId().getUserId()).get();
                 return user;
             }
